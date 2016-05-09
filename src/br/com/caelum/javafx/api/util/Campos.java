@@ -1,6 +1,7 @@
 package br.com.caelum.javafx.api.util;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,12 +11,12 @@ import br.com.caelum.javafx.api.controllers.ContasController;
 
 public class Campos {
 	
-	private static Map<String, Label> todosOsCampos;
+	private static Map<String, Label> todosOsCampos = new HashMap<>();
 
 	public static void registraCampos(ContasController controller){
-		Field[] atributos = controller.getClass().getFields();
+		Field[] atributos = controller.getClass().getDeclaredFields();
 		for (Field atributo : atributos) {
-			if(atributo.getClass().isAssignableFrom(Label.class) && atributo.isAnnotationPresent(FXML.class)){
+			if(atributo.getType().isAssignableFrom(Label.class) && atributo.isAnnotationPresent(FXML.class)){
 				try {
 					atributo.setAccessible(true);
 					todosOsCampos.put(atributo.getName(), (Label) atributo.get(controller));

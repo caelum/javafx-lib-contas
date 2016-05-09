@@ -20,7 +20,7 @@ public class ContasController {
 	private static final String MANIPULADOR_DE_CONTAS = "ManipuladorDeContas";
 
 	@FXML
-	private Label valor;
+	private Label saldo;
 	
 	@FXML
 	private Label numero;
@@ -90,13 +90,14 @@ public class ContasController {
 	}
 
 	private void recuperaConta() {
-		Field[] fields = this.manipuladorDeContas.getClass().getFields();
+		Field[] fields = this.manipuladorDeContas.getClass().getDeclaredFields();
 		for (Field field : fields) {
 			try {
 				Class<?> conta = Class.forName(CLASSE_CONTA);
-				if(field.getClass().isAssignableFrom(conta)) {
+				if(field.getType().isAssignableFrom(conta)) {
 					field.setAccessible(true);
 					populaTela(field.get(this.manipuladorDeContas));
+					break;
 				}
 			} catch (ClassNotFoundException e) {
 				throw new RuntimeException("Não foi encontrada a classe " + CLASSE_CONTA + " no pacote " + PACOTE_MODELO + " Verifique se o pacote e o nome da classe estão corretos.");
