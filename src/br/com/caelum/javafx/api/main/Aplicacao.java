@@ -1,6 +1,9 @@
 package br.com.caelum.javafx.api.main;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Aplicacao extends Application {
@@ -11,6 +14,10 @@ public class Aplicacao extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		AnchorPane base = FXMLLoader.load(getClass().getClassLoader().getResource("base.fxml"));
+		Scene scene = new Scene(base);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 }
