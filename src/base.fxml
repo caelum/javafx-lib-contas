@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.caelum.javafx.api.controllers.ContasController">
    <children>
       <Pane layoutX="25.0" layoutY="25.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="400.0">
          <children>
@@ -37,23 +37,23 @@
                         <Label text="Número:" GridPane.rowIndex="1" />
                         <Label text="Titular:" GridPane.rowIndex="2" />
                         <Label text="Saldo:" GridPane.rowIndex="3" />
-                        <Label id="agencia" text="[agencia]" GridPane.columnIndex="1" />
-                        <Label id="numero" text="[numero]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label id="titular" text="[titular]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label id="saldo" text="[saldo]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="agencia" text="[agencia]" GridPane.columnIndex="1" />
+                        <Label fx:id="numero" text="[numero]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="titular" text="[titular]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="saldo" text="[saldo]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Button mnemonicParsing="false" text="Criar conta">
+                  <Button mnemonicParsing="false" text="Criar conta" onAction="#criaConta">
                      <VBox.margin>
                         <Insets top="16.0" />
                      </VBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="178.0" mnemonicParsing="false" text="Deposita">
+                  <Button layoutX="10.0" layoutY="178.0" mnemonicParsing="false" text="Deposita" onAction="#deposita">
                      <VBox.margin>
                         <Insets top="16.0" />
                      </VBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="184.0" mnemonicParsing="false" text="Saca">
+                  <Button layoutX="10.0" layoutY="184.0" mnemonicParsing="false" text="Saca" onAction="#saca">
                      <VBox.margin>
                         <Insets top="16.0" />
                      </VBox.margin>
