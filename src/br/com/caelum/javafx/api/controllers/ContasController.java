@@ -1,5 +1,12 @@
 package br.com.caelum.javafx.api.controllers;
 
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.CLASSE_CONTA;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.MANIPULADOR_DE_CONTAS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_BASE;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_MODELO;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,11 +22,6 @@ import com.sun.xml.internal.ws.util.StringUtils;
 
 public class ContasController {
 	
-	private static final String CLASSE_CONTA = "br.com.caelum.contas.modelo.Conta";
-	private static final String PACOTE_BASE = "br.com.caelum.contas.";
-	private static final String PACOTE_MODELO = PACOTE_BASE + "modelo.";
-	private static final String MANIPULADOR_DE_CONTAS = "ManipuladorDeContas";
-
 	@FXML
 	private TextField valor;
 
@@ -67,11 +69,11 @@ public class ContasController {
 			Class<?> classe = Class.forName(PACOTE_BASE + MANIPULADOR_DE_CONTAS);
 			this.manipuladorDeContas = classe.newInstance();
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Não foi encontrada a classe " + MANIPULADOR_DE_CONTAS + " no pacote " + PACOTE_BASE + " Verifique se o pacote e o nome da classe estão corretos.");
+			mostraAlerta("Não foi encontrada a classe " + MANIPULADOR_DE_CONTAS + " no pacote " + PACOTE_BASE + " Verifique se o pacote e o nome da classe estão corretos.");
 		} catch (InstantiationException e) {
-			throw new RuntimeException("Não foi possível chamar a classe " + MANIPULADOR_DE_CONTAS + ". Verifique se a sua classe possui um construtor sem argumentos.");
+			mostraAlerta("Não foi possível chamar a classe " + MANIPULADOR_DE_CONTAS + ". Verifique se a sua classe possui um construtor sem argumentos.");
 		} catch (IllegalAccessException e) {
-			throw new RuntimeException("Não foi possível chamar a classe " + MANIPULADOR_DE_CONTAS + ". Verifique se a sua classe possui um construtor sem argumentos público.");
+			mostraAlerta("Não foi possível chamar a classe " + MANIPULADOR_DE_CONTAS + ". Verifique se a sua classe possui um construtor sem argumentos público.");
 		}
 	}
 
@@ -81,13 +83,14 @@ public class ContasController {
 			Evento evento = new Evento();
 			metodo.invoke(manipuladorDeContas, evento);
 		} catch (NoSuchMethodException e) {
-			throw new RuntimeException("Não foi encontrado o método " + nomeDoMetodo + " com o parâmetro do tipo Evento dentro da classe " + MANIPULADOR_DE_CONTAS + ". Verifique se o método foi criado corretamente.");
+			mostraAlerta("Não foi encontrado o método " + nomeDoMetodo + " com o parâmetro do tipo Evento dentro da classe " + MANIPULADOR_DE_CONTAS + ". Verifique se o método foi criado corretamente.");
 		} catch (SecurityException | IllegalAccessException e) {
-			throw new RuntimeException("Não foi possível chamar o método " + nomeDoMetodo + " com o parâmetro do tipo Evento dentro da classe " + MANIPULADOR_DE_CONTAS + ". Verifique se o método é público.");
+			mostraAlerta("Não foi possível chamar o método " + nomeDoMetodo + " com o parâmetro do tipo Evento dentro da classe " + MANIPULADOR_DE_CONTAS + ". Verifique se o método é público.");
 		} catch (IllegalArgumentException e) {
-			throw new RuntimeException("Oops, problemas internos. Chame o instrutor. '-' \nException: " + e.getMessage());
-		} catch (InvocationTargetException e) {
+			mostraAlerta(PROBLEMAS_INTERNOS);
 			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			mostraAlerta(e.getTargetException().getMessage());
 		}
 	}
 
@@ -107,9 +110,10 @@ public class ContasController {
 					break;
 				}
 			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Não foi encontrada a classe " + CLASSE_CONTA + " no pacote " + PACOTE_MODELO + " Verifique se o pacote e o nome da classe estão corretos.");
+				mostraAlerta("Não foi encontrada a classe " + CLASSE_CONTA + " no pacote " + PACOTE_MODELO + " Verifique se o pacote e o nome da classe estão corretos.");
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				throw new RuntimeException("Oops, problemas internos. Chame o instrutor. '-' \nException: " + e.getMessage());
+				mostraAlerta(PROBLEMAS_INTERNOS);
+				throw new RuntimeException(e);
 			}
 		}
 	}
@@ -122,13 +126,14 @@ public class ContasController {
 				Object retorno = getter.invoke(conta);
 				Campos.buscaCampo(nome).setText(retorno.toString());
 			} catch (NoSuchMethodException e) {
-				throw new RuntimeException("Não foi encontrado o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método foi criado corretamente.");
+				mostraAlerta("Não foi encontrado o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método foi criado corretamente.");
 			} catch (SecurityException | IllegalAccessException e) {
-				throw new RuntimeException("Não foi possível chamar o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método é público.");
+				mostraAlerta("Não foi possível chamar o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método é público.");
 			} catch (IllegalArgumentException e) {
-				throw new RuntimeException("Oops, problemas internos. Chame o instrutor. '-' \nException: " + e.getMessage());
-			} catch (InvocationTargetException e) {
+				mostraAlerta(PROBLEMAS_INTERNOS);
 				throw new RuntimeException(e);
+			} catch (InvocationTargetException e) {
+				mostraAlerta(e.getTargetException().getMessage());
 			}
 		}
 	}

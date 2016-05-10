@@ -1,5 +1,8 @@
 package br.com.caelum.javafx.api.util;
 
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.DEU_PAU_EXCEPTION;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +29,8 @@ public class Campos {
 					Campo campo = new Campo(atributo.isAnnotationPresent(EhAtributoDaConta.class), (TextField) atributo.get(controller), nomeDoAtributo);
 					todosOsCampos.put(nomeDoAtributo, campo);
 				} catch (IllegalArgumentException | IllegalAccessException e) {
-					throw new RuntimeException("Oops, problemas internos. Chame o instrutor. '-' \nException: " + e.getMessage());
+					mostraAlerta(DEU_PAU_EXCEPTION);
+					throw new RuntimeException(e);
 				}
 			}
 		}
