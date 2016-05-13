@@ -1,4 +1,4 @@
-package br.com.caelum.javafx.api.controllers;
+ package br.com.caelum.javafx.api.controllers;
 
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.CLASSE_CONTA;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.MANIPULADOR_DE_CONTAS;

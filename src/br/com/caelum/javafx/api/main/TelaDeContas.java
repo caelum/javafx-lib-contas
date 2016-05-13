@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Aplicacao extends Application {
+public class TelaDeContas extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
@@ -14,7 +14,7 @@ public class Aplicacao extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		AnchorPane base = FXMLLoader.load(getClass().getClassLoader().getResource("base.fxml"));
+		AnchorPane base = FXMLLoader.load(getClass().getClassLoader().getResource("Base.fxml"));
 		Scene scene = new Scene(base);
 		stage.setScene(scene);
 		stage.show();
