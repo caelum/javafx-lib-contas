@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.caelum.javafx.api.controllers.TelaInicialController">
    <children>
       <TabPane layoutX="57.0" layoutY="28.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -18,7 +18,7 @@
                <content>
                   <VBox>
                      <children>
-                        <TableView>
+                        <TableView fx:id="listaContas">
                           <columns>
                             <TableColumn editable="false" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" resizable="false" text="Titular" />
                             <TableColumn editable="false" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" resizable="false" text="Número" />
@@ -29,8 +29,8 @@
                         </TableView>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Nova Conta" />
-                              <Button layoutX="10.0" layoutY="10.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Salvar Dados">
+                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#criaConta" text="Nova Conta" />
+                              <Button layoutX="10.0" layoutY="10.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#salvarDados" text="Salvar Dados">
                                  <HBox.margin>
                                     <Insets left="16.0" />
                                  </HBox.margin>
@@ -48,7 +48,7 @@
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TableView>
+                        <TableView fx:id="listaSeguros">
                           <columns>
                             <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="Titular" />
                             <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="N° da Apólice" />
@@ -57,7 +57,7 @@
                         </TableView>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" text="Novo Seguro de Vida" />
+                              <Button mnemonicParsing="false" onAction="#criaSeguro" text="Novo Seguro de Vida" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="16.0" top="16.0" />
@@ -71,7 +71,7 @@
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TableView>
+                        <TableView fx:id="listaProdutos">
                           <columns>
                             <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Produto" />
                             <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Titular" />
@@ -80,7 +80,7 @@
                         </TableView>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Calcular Impostos" />
+                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#calculaImpostos" text="Calcular Impostos" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="16.0" top="16.0" />

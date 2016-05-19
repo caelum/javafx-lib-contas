@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.caelum.javafx.api.controllers.DetalhesContaController">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TitledPane animated="false" collapsible="false" text="[Tipo]">
+            <TitledPane fx:id="tipo" animated="false" collapsible="false" text="[Tipo]">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
                      <children>
@@ -40,10 +39,10 @@
                                     <Label text="Número:" GridPane.rowIndex="1" />
                                     <Label text="Agência:" GridPane.rowIndex="2" />
                                     <Label text="Saldo:" GridPane.rowIndex="3" />
-                                    <Label text="[titular]" GridPane.columnIndex="1" />
-                                    <Label text="[número]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="[agência]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="[saldo]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="titular" text="[titular]" GridPane.columnIndex="1" />
+                                    <Label fx:id="numero" text="[número]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="agencia" text="[agência]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="saldo" text="[saldo]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="8.0" top="8.0" />
@@ -69,7 +68,7 @@
                                     <Insets right="16.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField>
+                              <TextField fx:id="valorOperacao">
                                  <HBox.margin>
                                     <Insets right="16.0" />
                                  </HBox.margin>
@@ -83,8 +82,8 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Sacar" />
-                                    <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Depositar" GridPane.columnIndex="1" />
+                                    <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#saca" text="Sacar" />
+                                    <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#deposita" text="Depositar" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
@@ -109,7 +108,7 @@
                                           <Insets right="16.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="valorTransferencia">
                                        <HBox.margin>
                                           <Insets right="16.0" />
                                        </HBox.margin>
@@ -119,13 +118,13 @@
                                           <Insets right="16.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <ComboBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="listaContas" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="16.0" />
                                  </VBox.margin>
                               </HBox>
-                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" text="Transferir" />
+                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#transfere" text="Transferir" />
                            </children>
                         </VBox>
                      </children>
