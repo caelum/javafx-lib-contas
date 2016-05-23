@@ -1,6 +1,14 @@
 package br.com.caelum.javafx.api.controllers;
 
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.CLASSE_CONTA;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_MODELO;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
+
+import java.lang.reflect.Field;
+
 import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
+import br.com.caelum.javafx.api.modelo.ContaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -26,11 +34,34 @@ public class NovaContaController extends Controller {
 	@FXML
 	void criaConta(ActionEvent event) {
 		invocaMetodo("criaConta");
+		Object conta = buscaConta();
+		ContaDao.adiciona(conta);
 		JavaFXUtil.trocaDeTela(JavaFXUtil.TELA_INICIAL_FXML, event);
 	}
 
 	@Override
 	protected String getNomeDoManipulador() {
 		return JavaFXUtil.MANIPULADOR_DE_CONTAS;
+	}
+	
+	private Object buscaConta() {
+		try {
+			Field[] fields = getManipulador().getClass().getDeclaredFields();
+			for (Field field : fields) {
+					Class<?> classeConta = Class.forName(PACOTE_MODELO + CLASSE_CONTA);
+					if(field.getType().isAssignableFrom(classeConta)) {
+						field.setAccessible(true);
+						Object conta = field.get(getManipulador());
+						return conta;
+					}
+			}
+			mostraAlerta("Não foi encontrado o atributo do tipo " + CLASSE_CONTA + " na classe " + getNomeDoManipulador() + " Verifique se o atributo foi criado corretamente.");
+		} catch (ClassNotFoundException e) {
+			mostraAlerta("Não foi encontrada a classe " + CLASSE_CONTA + " no pacote " + PACOTE_MODELO + " Verifique se o pacote e o nome da classe estão corretos.");
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			mostraAlerta(PROBLEMAS_INTERNOS);
+			throw new RuntimeException(e);
+		}
+		throw new RuntimeException("Não foi possível encontrar a conta.");
 	}
 }

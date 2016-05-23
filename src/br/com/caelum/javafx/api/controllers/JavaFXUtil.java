@@ -16,7 +16,7 @@ public class JavaFXUtil {
 	
 	public static final String PROBLEMAS_INTERNOS = "Oops, problemas internos. Chame o instrutor. '-'";
 	public static final String DEU_PAU_EXCEPTION = "Deu pau '-'";
-	public static final String CLASSE_CONTA = "br.com.caelum.contas.modelo.Conta";
+	public static final String CLASSE_CONTA = "Conta";
 	public static final String PACOTE_BASE = "br.com.caelum.contas.";
 	public static final String PACOTE_MODELO = PACOTE_BASE + "modelo.";
 	public static final String MANIPULADOR_DE_CONTAS = "ManipuladorDeContas";

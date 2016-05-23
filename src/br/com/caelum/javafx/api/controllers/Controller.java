@@ -1,7 +1,7 @@
 package br.com.caelum.javafx.api.controllers;
 
-import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_BASE;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_BASE;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
 import java.lang.reflect.InvocationTargetException;

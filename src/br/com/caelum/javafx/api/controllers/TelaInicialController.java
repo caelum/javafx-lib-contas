@@ -6,13 +6,13 @@ import javafx.scene.control.TableView;
 public class TelaInicialController {
 
     @FXML
-    private TableView<?> listaContas;
+    private TableView<Object> listaContas;
 
     @FXML
-    private TableView<?> listaSeguros;
+    private TableView<Object> listaSeguros;
 
     @FXML
-    private TableView<?> listaProdutos;
+    private TableView<Object> listaProdutos;
 
 	private ListaContasController contasController;
 	private ListaSegurosController segurosController;
