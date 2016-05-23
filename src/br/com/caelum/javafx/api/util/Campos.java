@@ -23,11 +23,11 @@ public class Campos {
 	public void registraCampos(Controller controller){
 		Field[] atributos = controller.getClass().getDeclaredFields();
 		for (Field atributo : atributos) {
-			if(atributo.getType().isAssignableFrom(TextField.class) && atributo.isAnnotationPresent(FXML.class)){
+			if(atributo.isAnnotationPresent(FXML.class)){
 				try {
 					atributo.setAccessible(true);
 					String nomeDoAtributo = atributo.getName();
-					Campo campo = new Campo(atributo.isAnnotationPresent(EhAtributoDaConta.class), (TextField) atributo.get(controller), nomeDoAtributo);
+					Campo campo = new Campo(atributo.isAnnotationPresent(EhAtributoDaConta.class), atributo.get(controller), nomeDoAtributo);
 					todosOsCampos.put(nomeDoAtributo, campo);
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					mostraAlerta(DEU_PAU_EXCEPTION);

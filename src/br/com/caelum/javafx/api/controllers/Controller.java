@@ -63,6 +63,7 @@ public abstract class Controller {
 			throw new RuntimeException(e);
 		} catch (InvocationTargetException e) {
 			mostraAlerta(e.getTargetException().getMessage());
+			throw new RuntimeException(e);
 		}
 	}
 
