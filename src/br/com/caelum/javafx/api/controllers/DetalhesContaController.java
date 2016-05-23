@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
-public class DetalhesContaController {
+public class DetalhesContaController extends Controller {
 	
     @FXML
     private TitledPane tipo;
@@ -47,4 +47,9 @@ public class DetalhesContaController {
     void transfere(ActionEvent event) {
 
     }
+
+	@Override
+	protected String getNomeDoManipulador() {
+		return JavaFXUtil.MANIPULADOR_DE_CONTAS;
+	}
 }

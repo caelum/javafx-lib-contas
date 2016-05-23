@@ -9,17 +9,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
+import br.com.caelum.javafx.api.controllers.Controller;
+import br.com.caelum.javafx.api.modelo.Campo;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
-import br.com.caelum.javafx.api.controllers.ContasController;
-import br.com.caelum.javafx.api.modelo.Campo;
+import javafx.scene.control.ToggleGroup;
 
 public class Campos {
 	
-	private static Map<String, Campo> todosOsCampos = new HashMap<>();
+	private Map<String, Campo> todosOsCampos = new HashMap<>();
 
-	public static void registraCampos(ContasController controller){
+	public void registraCampos(Controller controller){
 		Field[] atributos = controller.getClass().getDeclaredFields();
 		for (Field atributo : atributos) {
 			if(atributo.getType().isAssignableFrom(TextField.class) && atributo.isAnnotationPresent(FXML.class)){
@@ -36,15 +37,27 @@ public class Campos {
 		}
 	}
 	
-	public static TextField buscaCampo(String campo) {
-		TextField encontrado = todosOsCampos.get(campo).getValor();
-		if(encontrado == null){
-			throw new RuntimeException("Não foi encontrado o campo com o nome " + campo + ". Verifique se o nome está correto.");
-		}
-		return encontrado;
+	public TextField buscaCampoDeTexto(String campo) {
+		return buscaCampo(campo);
 	}
 
-	public static List<String> getNomeDosCampos(){
+	public ToggleGroup buscaSelecionado(String campo) {
+		return buscaCampo(campo);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private <T> T buscaCampo(String campo) {
+		Object encontrado = todosOsCampos.get(campo).getValor();
+		
+		if(encontrado != null) {
+			T campoDeTexto = (T) encontrado;
+			return campoDeTexto;
+		}
+		
+		throw new RuntimeException("Não foi encontrado o campo com o nome " + campo + ". Verifique se o nome está correto.");
+	}
+	
+	public List<String> getNomeDosCampos(){
 		return todosOsCampos.values().stream().filter(campo -> campo.ehAtributoDaConta()).map(campo -> campo.getNome()).collect(Collectors.toList());
 	}
 }
