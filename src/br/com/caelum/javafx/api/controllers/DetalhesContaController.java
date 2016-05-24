@@ -1,5 +1,8 @@
 package br.com.caelum.javafx.api.controllers;
 
+import br.com.caelum.javafx.api.modelo.ContaDao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -8,45 +11,52 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 
 public class DetalhesContaController extends Controller {
-	
-    @FXML
-    private TitledPane tipo;
 
-    @FXML
-    private Label titular;
+	@FXML
+	private TitledPane tipo;
 
-    @FXML
-    private Label numero;
+	@FXML
+	private Label titular;
 
-    @FXML
-    private Label agencia;
+	@FXML
+	private Label numero;
 
-    @FXML
-    private Label saldo;
+	@FXML
+	private Label agencia;
 
-    @FXML
-    private TextField valorOperacao;
+	@FXML
+	private Label saldo;
 
-    @FXML
-    private TextField valorTransferencia;
+	@FXML
+	private TextField valorOperacao;
 
-    @FXML
-    private ComboBox<?> listaContas;
+	@FXML
+	private TextField valorTransferencia;
 
-    @FXML
-    void deposita(ActionEvent event) {
+	@FXML
+	private ComboBox<Object> listaContas;
 
-    }
+	@Override
+	public void initialize() {
+		super.initialize();
+		ObservableList<Object> dados = FXCollections.observableArrayList(ContaDao.getContas());
+		listaContas.setItems(dados);
+	}
 
-    @FXML
-    void saca(ActionEvent event) {
+	@FXML
+	void deposita(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void transfere(ActionEvent event) {
+	@FXML
+	void saca(ActionEvent event) {
 
-    }
+	}
+
+	@FXML
+	void transfere(ActionEvent event) {
+
+	}
 
 	@Override
 	protected String getNomeDoManipulador() {

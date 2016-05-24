@@ -9,11 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class JavaFXUtil {
-	
+
 	public static final String PROBLEMAS_INTERNOS = "Oops, problemas internos. Chame o instrutor. '-'";
 	public static final String DEU_PAU_EXCEPTION = "Deu pau '-'";
 	public static final String CLASSE_CONTA = "Conta";
@@ -24,23 +23,35 @@ public class JavaFXUtil {
 	public static final String TELA_INICIAL_FXML = "Inicial.fxml";
 	public static final String NOVO_SEGURO_FXML = "NovoSeguro.fxml";
 	public static final String DETALHES_CONTA_FXML = "DetalhesConta.fxml";
-	
-	public static void mostraAlerta(String mensagem){
+
+	public static void mostraAlerta(String mensagem) {
 		Alert alerta = new Alert(AlertType.ERROR, mensagem, ButtonType.OK);
 		alerta.setHeaderText(DEU_PAU_EXCEPTION);
 		alerta.showAndWait();
 	}
-	
-	static void trocaDeTela(String nomeFxml, ActionEvent event){
+
+	static void trocaDeTela(String nomeFxml, ActionEvent event) {
+		buscaTela(nomeFxml, event);
+	}
+
+	static void trocaDeTela(String nomeFxml, ActionEvent event, Object... objects) {
+		Controller controller = buscaTela(nomeFxml, event);
+		controller.populaDados(objects);
+
+	}
+
+	private static <T> T buscaTela(String nomeFxml, ActionEvent event) {
 		try {
-			AnchorPane base = FXMLLoader.load(JavaFXUtil.class.getClassLoader().getResource(nomeFxml));
+			FXMLLoader loader = new FXMLLoader(JavaFXUtil.class.getClassLoader().getResource(nomeFxml));
 			Node node = (Node) event.getSource();
 			Stage stage = (Stage) node.getScene().getWindow();
-			Scene scene = new Scene(base);
+			Scene scene = new Scene(loader.load());
 			stage.setScene(scene);
+			return loader.getController();
 		} catch (IOException e) {
 			mostraAlerta(PROBLEMAS_INTERNOS);
 			throw new RuntimeException(e);
 		}
 	}
+
 }

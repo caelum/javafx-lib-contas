@@ -44,5 +44,4 @@ public class TelaInicialController {
     void salvarDados(ActionEvent event) {
     	this.contasController.salvarDados(event);
     }
-
 }
