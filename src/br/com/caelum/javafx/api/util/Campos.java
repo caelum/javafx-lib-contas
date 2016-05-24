@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
-import br.com.caelum.javafx.api.controllers.Controller;
-import br.com.caelum.javafx.api.modelo.Campo;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
+import br.com.caelum.javafx.api.controllers.Controller;
+import br.com.caelum.javafx.api.modelo.Campo;
 
 public class Campos {
 	
@@ -37,8 +37,9 @@ public class Campos {
 		}
 	}
 	
-	public TextField buscaCampoDeTexto(String campo) {
-		return buscaCampo(campo);
+	public String buscaTextoDoCampo(String nomeDoCampo) {
+		TextField campo = buscaCampo(nomeDoCampo);
+		return campo.getText();
 	}
 
 	public ToggleGroup buscaSelecionado(String campo) {
@@ -59,5 +60,9 @@ public class Campos {
 	
 	public List<String> getNomeDosCampos(){
 		return todosOsCampos.values().stream().filter(campo -> campo.ehAtributoDaConta()).map(campo -> campo.getNome()).collect(Collectors.toList());
+	}
+
+	public Object buscaCampoParaPopular(String nome) {
+		return buscaCampo(nome);
 	}
 }

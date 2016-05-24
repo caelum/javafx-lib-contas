@@ -12,24 +12,22 @@ public class Evento {
 
 	public int getInt(String campo) {
 		try {
-			return Integer.parseInt(campos.buscaCampoDeTexto(campo).getText());
+			return Integer.parseInt(campos.buscaTextoDoCampo(campo));
 		} catch (NumberFormatException e) {
-			throw new RuntimeException(
-					"O campo procurado não possui valor do tipo int. Verifique o tipo e chame o método adequado.");
+			throw new RuntimeException("O campo procurado não possui valor do tipo int. Verifique o tipo e chame o método adequado.");
 		}
 	}
 
 	public double getDouble(String campo) {
 		try {
-			return Double.parseDouble(campos.buscaCampoDeTexto(campo).getText());
+			return Double.parseDouble(campos.buscaTextoDoCampo(campo));
 		} catch (NumberFormatException e) {
-			throw new RuntimeException(
-					"O campo procurado não possui valor do tipo double. Verifique o tipo e chame o método adequado.");
+			throw new RuntimeException("O campo procurado não possui valor do tipo double. Verifique o tipo e chame o método adequado.");
 		}
 	}
 
 	public String getString(String campo) {
-		return campos.buscaCampoDeTexto(campo).getText();
+		return campos.buscaTextoDoCampo(campo);
 	}
 
 	public String getSelecionado(String campo) {
