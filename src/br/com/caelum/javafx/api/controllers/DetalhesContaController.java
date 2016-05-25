@@ -1,16 +1,14 @@
 package br.com.caelum.javafx.api.controllers;
 
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.CLASSE_CONTA;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_MODELO;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
-import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
-import br.com.caelum.javafx.api.modelo.ContaDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +17,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
+import br.com.caelum.javafx.api.modelo.ContaDao;
+
+import com.sun.xml.internal.ws.util.StringUtils;
 
 public class DetalhesContaController extends Controller {
 
@@ -51,6 +53,8 @@ public class DetalhesContaController extends Controller {
 	@FXML
 	private ComboBox<Object> listaContas;
 
+	private Object conta;
+
 	@Override
 	public void initialize() {
 		super.initialize();
@@ -60,12 +64,12 @@ public class DetalhesContaController extends Controller {
 
 	@FXML
 	void deposita(ActionEvent event) {
-
+		executaAcao("deposita");
 	}
 
 	@FXML
 	void saca(ActionEvent event) {
-
+		executaAcao("saca");
 	}
 
 	@FXML
@@ -81,10 +85,17 @@ public class DetalhesContaController extends Controller {
 	@Override
 	public void populaDados(Object[] objects) {
 		super.populaDados(objects);
-		populaTela(objects[0]);
+		this.conta = objects[0];
+		populaTela();
+		atualizaConta();
 	}
 
-	private void populaTela(Object conta) {
+	private void executaAcao(String acao){
+		invocaMetodo(acao);
+		populaTela();
+	}
+
+	private void populaTela() {
 		for(String nome : campos.getNomeDosCampos()) {
 			String nomeDoMetodo = "get" + StringUtils.capitalize(nome);
 			try {
@@ -101,6 +112,25 @@ public class DetalhesContaController extends Controller {
 				throw new RuntimeException(e);
 			} catch (InvocationTargetException e) {
 				mostraAlerta(e.getTargetException().getMessage());
+			}
+		}
+	}
+
+	private void atualizaConta() {
+		Field[] fields = getManipulador().getClass().getDeclaredFields();
+		for (Field field : fields) {
+			try {
+				Class<?> classeConta = Class.forName(PACOTE_MODELO + CLASSE_CONTA);
+				if(field.getType().isAssignableFrom(classeConta)) {
+					field.setAccessible(true);
+					field.set(getManipulador(), conta);
+					break;
+				}
+			} catch (ClassNotFoundException e) {
+				mostraAlerta("Não foi encontrada a classe " + CLASSE_CONTA + " no pacote " + PACOTE_MODELO + " Verifique se o pacote e o nome da classe estão corretos.");
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				mostraAlerta(PROBLEMAS_INTERNOS);
+				throw new RuntimeException(e);
 			}
 		}
 	}
