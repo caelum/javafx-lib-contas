@@ -71,9 +71,21 @@
                      <children>
                         <TableView fx:id="listaSeguros">
                           <columns>
-                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="Titular" />
-                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="N° da Apólice" />
-                              <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="Valor" />
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="Titular">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="titular" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="N° da Apólice">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="numeroApolice" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" resizable="false" text="Valor">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="valor" />
+                                </cellValueFactory>
+                            </TableColumn>
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER">

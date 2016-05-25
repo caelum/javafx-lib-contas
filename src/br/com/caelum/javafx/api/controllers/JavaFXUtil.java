@@ -16,6 +16,7 @@ public class JavaFXUtil {
 	public static final String PROBLEMAS_INTERNOS = "Oops, problemas internos. Chame o instrutor. '-'";
 	public static final String DEU_PAU_EXCEPTION = "Deu pau '-'";
 	public static final String CLASSE_CONTA = "Conta";
+	public static final String CLASSE_SEGURO_DE_VIDA = "SeguroDeVida";
 	public static final String PACOTE_BASE = "br.com.caelum.contas.";
 	public static final String PACOTE_MODELO = PACOTE_BASE + "modelo.";
 	public static final String MANIPULADOR_DE_CONTAS = "ManipuladorDeContas";
@@ -23,6 +24,7 @@ public class JavaFXUtil {
 	public static final String TELA_INICIAL_FXML = "Inicial.fxml";
 	public static final String NOVO_SEGURO_FXML = "NovoSeguro.fxml";
 	public static final String DETALHES_CONTA_FXML = "DetalhesConta.fxml";
+	public static final String MANIPULADOR_DE_SEGUROS = "ManipuladorDeSeguroDeVida";
 
 	public static void mostraAlerta(String mensagem) {
 		Alert alerta = new Alert(AlertType.ERROR, mensagem, ButtonType.OK);
