@@ -77,6 +77,11 @@ public class DetalhesContaController extends Controller {
 
 	}
 
+	@FXML
+	void voltar(ActionEvent event) {
+		JavaFXUtil.trocaDeTela(JavaFXUtil.TELA_INICIAL_FXML, event);
+	}
+
 	@Override
 	protected String getNomeDoManipulador() {
 		return JavaFXUtil.MANIPULADOR_DE_CONTAS;

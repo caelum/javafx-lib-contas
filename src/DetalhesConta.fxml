@@ -101,7 +101,7 @@
                      <children>
                         <VBox prefWidth="566.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefWidth="566.0">
+                              <HBox alignment="CENTER_LEFT">
                                  <children>
                                     <Label text="Valor:">
                                        <HBox.margin>
@@ -124,7 +124,20 @@
                                     <Insets bottom="16.0" />
                                  </VBox.margin>
                               </HBox>
-                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#transfere" text="Transferir" />
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#transfere" text="Transferir">
+                                       <HBox.margin>
+                                          <Insets right="16.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button alignment="CENTER" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#voltar" text="Voltar">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
