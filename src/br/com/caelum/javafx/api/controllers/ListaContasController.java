@@ -8,13 +8,10 @@ import br.com.caelum.javafx.api.modelo.ContaDao;
 
 public class ListaContasController extends Controller {
 
-	private TableView<Object> listaContas;
-
 	public ListaContasController(TableView<Object> listaContas) {
-		this.listaContas = listaContas;
-		this.listaContas.getSelectionModel().selectedItemProperty().addListener((linha, antigo, novo) -> {
+		listaContas.getSelectionModel().selectedItemProperty().addListener((linha, antigo, novo) -> {
 			Object conta = linha.getValue();
-			ActionEvent event = new ActionEvent(this.listaContas, listaContas);
+			ActionEvent event = new ActionEvent(listaContas, listaContas);
 			JavaFXUtil.trocaDeTela(JavaFXUtil.DETALHES_CONTA_FXML, event, conta);
 		});
 		ObservableList<Object> dados = FXCollections.observableArrayList(ContaDao.getContas());

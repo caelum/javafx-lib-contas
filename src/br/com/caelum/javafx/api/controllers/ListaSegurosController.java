@@ -8,10 +8,7 @@ import br.com.caelum.javafx.api.modelo.SeguroDao;
 
 public class ListaSegurosController {
 
-	private TableView<Object> listaSeguros;
-
 	public ListaSegurosController(TableView<Object> listaSeguros) {
-		this.listaSeguros = listaSeguros;
 		ObservableList<Object> dados = FXCollections.observableArrayList(SeguroDao.getSeguros());
 		listaSeguros.setItems(dados);
 	}
