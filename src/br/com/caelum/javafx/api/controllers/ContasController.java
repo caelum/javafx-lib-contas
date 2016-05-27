@@ -82,7 +82,7 @@ public class ContasController extends Controller {
 			try {
 				Method getter = conta.getClass().getMethod(nomeDoMetodo);
 				Object retorno = getter.invoke(conta);
-				Object campo = campos.buscaTextoDoCampo(nome);
+				Object campo = campos.buscaCampo(nome);
 				campo.getClass().getMethod("setText", String.class).invoke(campo, retorno.toString());
 			} catch (NoSuchMethodException e) {
 				mostraAlerta("Não foi encontrado o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método foi criado corretamente.");

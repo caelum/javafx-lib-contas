@@ -51,15 +51,20 @@ public class DetalhesContaController extends Controller {
 	private TextField valorTransferencia;
 
 	@FXML
-	private ComboBox<Object> listaContas;
+	private ComboBox<Object> destino;
 
 	private Object conta;
 
+	
 	@Override
-	public void initialize() {
-		super.initialize();
+	public void populaDados(Object[] objects) {
+		super.populaDados(objects);
 		ObservableList<Object> dados = FXCollections.observableArrayList(ContaDao.getContas());
-		listaContas.setItems(dados);
+		this.conta = objects[0];
+		dados.remove(this.conta);
+		destino.setItems(dados);
+		populaTela();
+		atualizaConta();
 	}
 
 	@FXML
@@ -74,7 +79,7 @@ public class DetalhesContaController extends Controller {
 
 	@FXML
 	void transfere(ActionEvent event) {
-
+		executaAcao("transfere");
 	}
 
 	@FXML
@@ -85,14 +90,6 @@ public class DetalhesContaController extends Controller {
 	@Override
 	protected String getNomeDoManipulador() {
 		return JavaFXUtil.MANIPULADOR_DE_CONTAS;
-	}
-
-	@Override
-	public void populaDados(Object[] objects) {
-		super.populaDados(objects);
-		this.conta = objects[0];
-		populaTela();
-		atualizaConta();
 	}
 
 	private void executaAcao(String acao){
@@ -106,7 +103,7 @@ public class DetalhesContaController extends Controller {
 			try {
 				Method getter = conta.getClass().getMethod(nomeDoMetodo);
 				Object retorno = getter.invoke(conta);
-				Object campo = campos.buscaCampoParaPopular(nome);
+				Object campo = campos.buscaCampo(nome);
 				campo.getClass().getMethod("setText", String.class).invoke(campo, retorno.toString());
 			} catch (NoSuchMethodException e) {
 				mostraAlerta("Não foi encontrado o método " + nomeDoMetodo + " dentro da classe " + CLASSE_CONTA + ". Verifique se o método foi criado corretamente.");

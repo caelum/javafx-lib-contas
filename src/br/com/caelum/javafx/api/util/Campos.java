@@ -10,20 +10,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
 import br.com.caelum.javafx.api.controllers.Controller;
 import br.com.caelum.javafx.api.modelo.Campo;
 
 public class Campos {
-	
+
 	private Map<String, Campo> todosOsCampos = new HashMap<>();
 
-	public void registraCampos(Controller controller){
+	public void registraCampos(Controller controller) {
 		Field[] atributos = controller.getClass().getDeclaredFields();
 		for (Field atributo : atributos) {
-			if(atributo.isAnnotationPresent(FXML.class)){
+			if (atributo.isAnnotationPresent(FXML.class)) {
 				try {
 					atributo.setAccessible(true);
 					String nomeDoAtributo = atributo.getName();
@@ -36,33 +34,21 @@ public class Campos {
 			}
 		}
 	}
-	
-	public String buscaTextoDoCampo(String nomeDoCampo) {
-		TextField campo = buscaCampo(nomeDoCampo);
-		return campo.getText();
-	}
 
-	public ToggleGroup buscaSelecionado(String campo) {
-		return buscaCampo(campo);
-	}
-	
 	@SuppressWarnings("unchecked")
-	private <T> T buscaCampo(String campo) {
+	public <T> T buscaCampo(String campo) {
 		Object encontrado = todosOsCampos.get(campo).getValor();
-		
-		if(encontrado != null) {
+
+		if (encontrado != null) {
 			T campoDeTexto = (T) encontrado;
 			return campoDeTexto;
 		}
-		
+
 		throw new RuntimeException("Não foi encontrado o campo com o nome " + campo + ". Verifique se o nome está correto.");
 	}
-	
-	public List<String> getNomeDosCampos(){
+
+	public List<String> getNomeDosCampos() {
 		return todosOsCampos.values().stream().filter(campo -> campo.ehAtributoDaConta()).map(campo -> campo.getNome()).collect(Collectors.toList());
 	}
 
-	public Object buscaCampoParaPopular(String nome) {
-		return buscaCampo(nome);
-	}
 }

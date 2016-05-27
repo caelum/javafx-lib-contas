@@ -103,7 +103,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
-                                    <Label text="Valor:">
+                                    <Label minWidth="36.0" text="Valor:">
                                        <HBox.margin>
                                           <Insets right="16.0" />
                                        </HBox.margin>
@@ -113,12 +113,12 @@
                                           <Insets right="16.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <Label text="Destino:">
+                                    <Label minWidth="51.0" text="Destino:">
                                        <HBox.margin>
                                           <Insets right="16.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <ComboBox fx:id="listaContas" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="destino" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="16.0" />
