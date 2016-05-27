@@ -1,5 +1,6 @@
 package br.com.caelum.javafx.api.controllers;
 
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.NOVO_SEGURO_FXML;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +15,7 @@ public class ListaSegurosController {
 	}
 
 	public void criaSeguro(ActionEvent event) {
-		JavaFXUtil.trocaDeTela(JavaFXUtil.NOVO_SEGURO_FXML, event);
+		JavaFXUtil.trocaDeTela(NOVO_SEGURO_FXML, event);
 	}
 
 }

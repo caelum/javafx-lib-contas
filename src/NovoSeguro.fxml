@@ -49,10 +49,14 @@
                            <children>
                               <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#novoSeguro" text="Gerar Seguro">
                                  <HBox.margin>
-                                    <Insets top="16.0" />
+                                    <Insets right="16.0" />
                                  </HBox.margin>
                               </Button>
+                              <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" />
                            </children>
+                           <VBox.margin>
+                              <Insets top="16.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>

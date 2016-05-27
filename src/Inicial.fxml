@@ -106,9 +106,21 @@
                      <children>
                         <TableView fx:id="listaProdutos">
                           <columns>
-                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Produto" />
-                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Titular" />
-                              <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Valor do Imposto" />
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Produto" >
+                            	<cellValueFactory>
+                                    <PropertyValueFactory property="tipo" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Titular" >
+                            	<cellValueFactory>
+                                    <PropertyValueFactory property="titular" />
+                                </cellValueFactory>
+                            </TableColumn>
+                            <TableColumn editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="-1.0" text="Valor do Imposto" >
+                            	<cellValueFactory>
+                                    <PropertyValueFactory property="valorImposto" />
+                                </cellValueFactory>
+                            </TableColumn>
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER">

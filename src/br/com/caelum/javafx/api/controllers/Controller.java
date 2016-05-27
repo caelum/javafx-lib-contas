@@ -2,11 +2,13 @@ package br.com.caelum.javafx.api.controllers;
 
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_BASE;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.TELA_INICIAL_FXML;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import br.com.caelum.javafx.api.util.Campos;
 import br.com.caelum.javafx.api.util.Evento;
@@ -67,6 +69,11 @@ public abstract class Controller {
 
 	public void populaDados(Object[] objects) {
 		this.objects = objects;
+	}
+
+	@FXML
+	void voltar(ActionEvent event) {
+		JavaFXUtil.trocaDeTela(TELA_INICIAL_FXML, event);
 	}
 
 }

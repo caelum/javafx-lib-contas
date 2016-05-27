@@ -1,8 +1,10 @@
 package br.com.caelum.javafx.api.controllers;
 
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.CLASSE_CONTA;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.MANIPULADOR_DE_CONTAS;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PACOTE_MODELO;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.PROBLEMAS_INTERNOS;
+import static br.com.caelum.javafx.api.controllers.JavaFXUtil.TELA_INICIAL_FXML;
 import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
 import java.lang.reflect.Field;
@@ -36,12 +38,12 @@ public class NovaContaController extends Controller {
 		invocaMetodo("criaConta");
 		Object conta = buscaConta();
 		ContaDao.adiciona(conta);
-		JavaFXUtil.trocaDeTela(JavaFXUtil.TELA_INICIAL_FXML, event);
+		JavaFXUtil.trocaDeTela(TELA_INICIAL_FXML, event);
 	}
 
 	@Override
 	protected String getNomeDoManipulador() {
-		return JavaFXUtil.MANIPULADOR_DE_CONTAS;
+		return MANIPULADOR_DE_CONTAS;
 	}
 	
 	private Object buscaConta() {
