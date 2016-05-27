@@ -41,7 +41,7 @@ public class TelaInicialController {
     }
 
     @FXML
-    void salvarDados(ActionEvent event) {
-    	this.contasController.salvarDados(event);
+    void salvaDados(ActionEvent event) {
+    	this.contasController.salvaDados(event);
     }
 }

@@ -51,7 +51,7 @@
                         <HBox alignment="CENTER">
                            <children>
                               <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#criaConta" text="Nova Conta" />
-                              <Button layoutX="10.0" layoutY="10.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#salvarDados" text="Salvar Dados">
+                              <Button layoutX="10.0" layoutY="10.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#salvaDados" text="Salvar Dados">
                                  <HBox.margin>
                                     <Insets left="16.0" />
                                  </HBox.margin>
