@@ -7,10 +7,10 @@ import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
 import java.lang.reflect.Field;
 
-import br.com.caelum.javafx.api.modelo.SeguroDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import br.com.caelum.javafx.api.modelo.SeguroDao;
 
 public class NovoSeguroController extends Controller{
 

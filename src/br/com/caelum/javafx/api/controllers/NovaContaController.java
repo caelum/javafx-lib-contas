@@ -9,12 +9,12 @@ import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 
 import java.lang.reflect.Field;
 
-import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
-import br.com.caelum.javafx.api.modelo.ContaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
+import br.com.caelum.javafx.api.modelo.ContaDao;
 
 public class NovaContaController extends Controller {
 

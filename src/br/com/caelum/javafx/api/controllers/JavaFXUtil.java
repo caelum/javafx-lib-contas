@@ -25,11 +25,16 @@ public class JavaFXUtil {
 	public static final String NOVO_SEGURO_FXML = "NovoSeguro.fxml";
 	public static final String DETALHES_CONTA_FXML = "DetalhesConta.fxml";
 	public static final String MANIPULADOR_DE_SEGUROS = "ManipuladorDeSeguroDeVida";
+	public static final String MANIPULADOR_DE_TRIBUTAVEIS = "ManipuladorDeTributaveis";
 	public static final String INTERFACE_TRIBUTAVEL = "Tributavel";
 
 	public static void mostraAlerta(String mensagem) {
-		Alert alerta = new Alert(AlertType.ERROR, mensagem, ButtonType.OK);
-		alerta.setHeaderText(DEU_PAU_EXCEPTION);
+		mostraAlerta(mensagem, DEU_PAU_EXCEPTION, AlertType.ERROR);
+	}
+
+	public static void mostraAlerta(String mensagem, String titulo, AlertType tipoDoAlerta) {
+		Alert alerta = new Alert(tipoDoAlerta ,mensagem, ButtonType.OK);
+		alerta.setHeaderText(titulo);
 		alerta.showAndWait();
 	}
 

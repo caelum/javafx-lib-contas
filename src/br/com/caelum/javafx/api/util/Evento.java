@@ -1,7 +1,10 @@
 package br.com.caelum.javafx.api.util;
 
+import java.util.List;
+
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
@@ -43,5 +46,10 @@ public class Evento {
 	public Object getSelecionadoNoCombo(String campo){
 		ComboBox<?> combo = campos.buscaCampo(campo);
 		return combo.getSelectionModel().getSelectedItem();
+	}
+	
+	public <T> List<T> getLista(String campo) {
+		TableView<T> tableView = campos.buscaCampo(campo);
+		return tableView.getItems();
 	}
 }
