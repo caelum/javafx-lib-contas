@@ -52,4 +52,13 @@ public class Evento {
 		TableView<T> tableView = campos.buscaCampo(campo);
 		return tableView.getItems();
 	}
+	
+	public <T> T getTributavel(String campo, int indice){
+		List<T> lista = getLista(campo);
+		return lista.get(indice);
+	}
+	
+	public int getTamanhoDaLista(String campo){
+		return getLista(campo).size();
+	}
 }
