@@ -49,8 +49,13 @@ public class Evento {
 	}
 	
 	public <T> List<T> getLista(String campo) {
-		TableView<T> tableView = campos.buscaCampo(campo);
-		return tableView.getItems();
+		try {			
+			TableView<T> tableView = campos.buscaCampo(campo);
+			return tableView.getItems();
+		} catch (ClassCastException e) {
+			ComboBox<T> comboBox = campos.buscaCampo(campo);
+			return comboBox.getItems();
+		}
 	}
 	
 	public <T> T getTributavel(String campo, int indice){

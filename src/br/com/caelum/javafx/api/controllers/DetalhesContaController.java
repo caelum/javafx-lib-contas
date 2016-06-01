@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import br.com.caelum.javafx.api.annotations.EhAtributoDaConta;
 import br.com.caelum.javafx.api.modelo.ContaDao;
+import br.com.caelum.javafx.api.util.Evento;
 
 import com.sun.xml.internal.ws.util.StringUtils;
 
@@ -63,8 +64,29 @@ public class DetalhesContaController extends Controller {
 		this.conta = objects[0];
 		dados.remove(this.conta);
 		destino.setItems(dados);
+		ordenaLista();
 		populaTela();
 		atualizaConta();
+	}
+
+	private void ordenaLista() {
+		String nomeDoMetodo = "ordenaLista";
+		try {
+			Method metodo = getManipulador().getClass().getMethod(nomeDoMetodo, Evento.class);
+			Evento evento = new Evento(campos);
+			metodo.invoke(getManipulador(), evento);
+		} catch (NoSuchMethodException e) {
+			// Ignora pois o aluno só vai ter este método quando fizer o exercício de Collections
+		} catch (SecurityException | IllegalAccessException e) {
+			mostraAlerta("Não foi possível chamar o método " + nomeDoMetodo + " com o parâmetro do tipo Evento dentro da classe "
+					+ getManipulador().getClass().getSimpleName() + ". Verifique se o método é público.");
+		} catch (IllegalArgumentException e) {
+			mostraAlerta(PROBLEMAS_INTERNOS);
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			mostraAlerta(e.getTargetException().getMessage());
+			throw new RuntimeException(e);
+		}
 	}
 
 	@FXML
