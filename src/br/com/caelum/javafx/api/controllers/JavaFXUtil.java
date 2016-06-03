@@ -35,6 +35,7 @@ public class JavaFXUtil {
 	public static void mostraAlerta(String mensagem, String titulo, AlertType tipoDoAlerta) {
 		Alert alerta = new Alert(tipoDoAlerta ,mensagem, ButtonType.OK);
 		alerta.setHeaderText(titulo);
+		alerta.setResizable(true);
 		alerta.showAndWait();
 	}
 

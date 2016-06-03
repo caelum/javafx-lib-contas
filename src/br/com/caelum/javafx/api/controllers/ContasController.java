@@ -61,7 +61,7 @@ public class ContasController extends Controller {
 		Field[] fields = getManipulador().getClass().getDeclaredFields();
 		for (Field field : fields) {
 			try {
-				Class<?> conta = Class.forName(CLASSE_CONTA);
+				Class<?> conta = Class.forName(PACOTE_MODELO + CLASSE_CONTA);
 				if(field.getType().isAssignableFrom(conta)) {
 					field.setAccessible(true);
 					populaTela(field.get(getManipulador()));
