@@ -28,6 +28,8 @@ public class JavaFXUtil {
 	public static final String MANIPULADOR_DE_TRIBUTAVEIS = "ManipuladorDeTributaveis";
 	public static final String INTERFACE_TRIBUTAVEL = "Tributavel";
 
+	public static boolean temTributavel = false;
+
 	public static void mostraAlerta(String mensagem) {
 		mostraAlerta(mensagem, DEU_PAU_EXCEPTION, AlertType.ERROR);
 	}

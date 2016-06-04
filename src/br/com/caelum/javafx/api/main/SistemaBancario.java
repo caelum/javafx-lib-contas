@@ -9,8 +9,9 @@ import javafx.stage.Stage;
 
 public class SistemaBancario extends Application {
 
-	public static void main(String[] args) {
-		launch(args);
+	public static void mostraTela(boolean temTributavel) {
+		JavaFXUtil.temTributavel = temTributavel;
+		launch();
 	}
 
 	@Override
