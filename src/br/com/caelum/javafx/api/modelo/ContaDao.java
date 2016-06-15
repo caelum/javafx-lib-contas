@@ -14,7 +14,7 @@ import java.util.List;
 public class ContaDao {
 
 	private static List<Object> contas;
-	
+
 	static {
 		String nomeDoMetodo = "carregaDados";
 		try {
@@ -25,7 +25,8 @@ public class ContaDao {
 		} catch (NoSuchMethodException e) {
 			contas = new ArrayList<>();
 		} catch (SecurityException | IllegalAccessException e) {
-			mostraAlerta("Não foi possível chamar o método " + nomeDoMetodo + " dentro da classe " + MANIPULADOR_DE_CONTAS + ". Verifique se o método é público.");
+			mostraAlerta("Não foi possível chamar o método " + nomeDoMetodo + " dentro da classe "
+					+ MANIPULADOR_DE_CONTAS + ". Verifique se o método é público.");
 		} catch (ClassNotFoundException | InstantiationException | IllegalArgumentException e) {
 			mostraAlerta(PROBLEMAS_INTERNOS);
 			throw new RuntimeException(e);
@@ -34,10 +35,14 @@ public class ContaDao {
 		}
 	}
 
-	public static void adiciona(Object conta) {
-		contas.add(conta);
+	public static boolean adiciona(Object conta) {
+		if (!contas.contains(conta)) {
+			contas.add(conta);
+			return true;
+		}
+		return false;
 	}
-	
+
 	public static List<Object> getContas() {
 		return contas;
 	}
