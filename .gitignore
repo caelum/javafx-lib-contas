@@ -25,6 +25,7 @@ local.properties
 .loadpath
 .recommenders
 .classpath
+.project
 
 META-INF/
 
