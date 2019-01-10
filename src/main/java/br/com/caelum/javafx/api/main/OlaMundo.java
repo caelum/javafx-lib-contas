@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import br.com.caelum.javafx.api.controllers.JavaFXUtil;
+import sun.misc.Unsafe;
 
 public class OlaMundo extends Application {
 

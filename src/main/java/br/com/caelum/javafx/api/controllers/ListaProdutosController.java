@@ -7,8 +7,7 @@ import static br.com.caelum.javafx.api.controllers.JavaFXUtil.mostraAlerta;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
+import br.com.caelum.javafx.api.util.StringUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
